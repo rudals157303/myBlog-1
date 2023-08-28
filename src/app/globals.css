@@ -604,10 +604,29 @@ body {
   width: 4px;
   height: 4px;
 }
+/* 포트폴리오 */
+
+.port_con {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.port_con > div {
+  width: calc(33% - 30px);
+  text-align: center;
+}
+.port_con > div h4 {
+  margin-top: 20px;
+}
 
 @media (max-width: 640px) {
   .navItem {
     display: none;
+  }
+  .port_con > div {
+    width: calc(50% - 20px);
   }
 }
 

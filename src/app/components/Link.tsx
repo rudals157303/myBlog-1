@@ -31,10 +31,10 @@ export default function UrlData() {
   }, [btn]);
 
   const navLink: LinkArray[] = [
-    { url: "/", text: "Home" },
+    // { url: "/", text: "Home" },
     { url: "/pages/about", text: "About" },
     { url: "/pages/portfolio", text: "Portfolio" },
-    { url: "/pages/skill", text: "Skill" },
+    // { url: "/pages/skill", text: "Skill" },
   ];
 
   function toggleMenu() {

@@ -19,7 +19,7 @@ export default function Home() {
         style={{ marginTop: "40px" }}
         className={loading ? "slide-top" : "none"}
       >
-        <Image src={img_1} alt="이미지" width={200} />
+        {/* <Image src={img_1} alt="이미지" width={200} /> */}
       </div>
     </>
   );
