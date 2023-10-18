@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import img_1 from "../../public/img_1.png";
-import { useEffect, useState } from "react";
-import PageComponent from "./components/Nav";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);

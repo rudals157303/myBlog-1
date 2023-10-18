@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function BackGround() {
-  const [load, setLoad] = useState(false);
+  const [load] = useState(false);
   useEffect(() => {
     console.log(load);
   }, [load]);

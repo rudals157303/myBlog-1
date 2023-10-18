@@ -1,8 +1,8 @@
 "use client";
-import { reset, setMenu } from "@/redux/features/menuSlice";
+import { setMenu } from "@/redux/features/menuSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type LinkArray = {
   url: string;
@@ -13,7 +13,7 @@ export default function UrlData() {
   const [loding, setLoading] = useState<boolean>(false);
   const [loding2, setLoading2] = useState<boolean>(false);
   const [btn, setBtn] = useState<boolean>(false);
-  const store = useAppSelector((state) => state.menuReducer);
+  const store = useAppSelector(state => state.menuReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function UrlData() {
   ];
 
   function toggleMenu() {
-    setBtn((state) => !state);
+    setBtn(state => !state);
     dispatch(setMenu(!btn));
   }
 
@@ -50,7 +50,7 @@ export default function UrlData() {
 
       {btn ? (
         <div className="full-menu">
-          {navLink.map((c) => (
+          {navLink.map(c => (
             <Link
               href={`${c.url}`}
               key={c.url}
@@ -75,7 +75,7 @@ export default function UrlData() {
             style={{ width: "calc(70% - 40px)" }}
             className={loding2 ? "slide-right navItem" : "none"}
           >
-            {navLink.map((c) => (
+            {navLink.map(c => (
               <Link href={`${c.url}`} key={c.url} className="navStyle">
                 {c.text}
               </Link>

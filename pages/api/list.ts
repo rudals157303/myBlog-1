@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { connectDB } from "../../util/connectDB";
+import { connectDB } from "../../util/database";
 import { NextApiRequest, NextApiResponse } from "next";
 
 interface IlistData {
@@ -70,12 +70,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(200).json({ ...result, messeage: "저장 되었습니다" });
     }
     if (req.query.type === "change") {
-      const copy = req.body.list.map((a: any) => ({
-        title: a.title,
-        id: new ObjectId(a.id),
-        date: new Date(a.date),
-        content: a.content,
-      }));
+      const copy = req.body.list.map(
+        (a: { title: string; id: ObjectId; date: Date; content: string }) => ({
+          title: a.title,
+          id: new ObjectId(a.id),
+          date: new Date(a.date),
+          content: a.content,
+        }),
+      );
       const filter = { email: req.body.email };
       const update = {
         $set: {

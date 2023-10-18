@@ -1,16 +1,16 @@
 "use client";
 import Image from "next/image";
-import PageComponent from "../../components/Nav";
+
 import kmjang from "../../../../public/kmjang.png";
 import joro from "../../../../public/joro.png";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppSelector } from "@/redux/hooks";
 
 export default function About() {
-  const [loading, setLoading] = useState(false);
-  const [time, setTime] = useState(false);
-  const [time2, setTime2] = useState(false);
-  const store = useAppSelector((state) => state.menuReducer.value);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [time, setTime] = useState<boolean>(false);
+  const [time2, setTime2] = useState<boolean>(false);
+  const store = useAppSelector(state => state.menuReducer.value);
 
   useEffect(() => {
     const timeout = setTimeout(() => setTime(true), 6000);
@@ -50,8 +50,14 @@ export default function About() {
     </>
   );
 }
+interface Props {
+  loading: boolean;
+  setLoading: (value: boolean) => void;
+  time: boolean;
+  setTime: (value: boolean) => void;
+}
 
-function PropsDiv({ loading, setLoading, time, setTime }: any) {
+function PropsDiv({ loading, setLoading, time, setTime }: Props) {
   const [text, setText] = useState("");
   const [count, setCount] = useState(0);
   const [text2, setText2] = useState("");
@@ -64,13 +70,13 @@ function PropsDiv({ loading, setLoading, time, setTime }: any) {
   useEffect(() => {
     if (!loading) {
       const interval = setInterval(() => {
-        setText((prev) => prev + txt[count]);
+        setText(prev => prev + txt[count]);
         text.length;
         if (text.length === 8) {
           setText(
-            (prev) =>
+            prev =>
               prev +
-              "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"
+              "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0",
           );
         }
         setCount(count + 1);
@@ -84,7 +90,7 @@ function PropsDiv({ loading, setLoading, time, setTime }: any) {
       };
     } else if (loading) {
       const interval = setInterval(() => {
-        setText2((prev) => prev + txt2[count2]);
+        setText2(prev => prev + txt2[count2]);
         text2.length;
 
         setCount2(count2 + 1);

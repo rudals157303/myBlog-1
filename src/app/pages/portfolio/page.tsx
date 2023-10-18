@@ -1,12 +1,9 @@
 "use client";
-import Image from "next/image";
-import PageComponent from "../../components/Nav";
-import img_1 from "../../../../public/img_1.png";
-import { useEffect, useState } from "react";
+import React from "react";
 import { useAppSelector } from "@/redux/hooks";
 
 export default function Portfolio() {
-  const store = useAppSelector((state) => state.menuReducer.value);
+  const store = useAppSelector(state => state.menuReducer.value);
   return (
     <div>
       {!store && (
@@ -32,17 +29,26 @@ export default function Portfolio() {
                   <a
                     href="https://drag-drop-tan-alpha.vercel.app/"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <img src="/web_todo.png" alt="투두웹" />
                   </a>
                 </div>
                 <div className="card_style">
-                  <a href="https://rudals95.github.io/" target="_blank">
+                  <a
+                    href="https://rudals95.github.io/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <img src="/play.png" alt="음악웹" />
                   </a>
                 </div>
                 <div className="card_style">
-                  <a href="https://rudals95.github.io/jinro/" target="_blank">
+                  <a
+                    href="https://rudals95.github.io/jinro/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <img src="/jinro.png" alt="음악웹" />
                   </a>
                 </div>

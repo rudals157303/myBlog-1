@@ -1,4 +1,4 @@
-import { connectDB } from "../../../util/connectDB";
+import { connectDB } from "../../../util/database";
 import { IuserData } from "../../../type/usertype";
 import { NextApiRequest, NextApiResponse } from "next";
 

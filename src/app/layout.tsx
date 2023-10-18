@@ -1,3 +1,4 @@
+import React from "react";
 import "./globals.css";
 import { Providers } from "@/redux/provider";
 import Nav from "./components/Nav";
