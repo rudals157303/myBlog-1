@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import PageComponent from "../../components/PageComponent";
+import PageComponent from "../../components/Nav";
 import kmjang from "../../../../public/kmjang.png";
 import joro from "../../../../public/joro.png";
 import { useEffect, useState } from "react";
@@ -23,9 +23,6 @@ export default function About() {
 
   return (
     <>
-      <div>
-        <PageComponent />
-      </div>
       {!store && (
         <div className="container">
           <div className="pd20">
@@ -38,18 +35,14 @@ export default function About() {
                 부품도 바꿔가면서 혼종 을 만들기도 하였습니다.
               </p>
               <br />
-              <p className="eventFont">그렇게 시간이 흘러...</p>
 
               <p className="pdb40"></p>
-
-              {time && (
-                <PropsDiv
-                  loading={loading}
-                  setLoading={setLoading}
-                  time={time2}
-                  setTime={setTime2}
-                />
-              )}
+              <PropsDiv
+                loading={loading}
+                setLoading={setLoading}
+                time={time}
+                setTime={setTime2}
+              />
             </div>
           </div>
         </div>

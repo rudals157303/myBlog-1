@@ -1,7 +1,9 @@
 import "./globals.css";
 import { Providers } from "@/redux/provider";
+import Nav from "./components/Nav";
 
 import type { Metadata } from "next";
+import Wrapper from "./components/Wrapper";
 
 export const metadata: Metadata = {
   title: "kmjang-blog",
@@ -16,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <Providers>
-        <body>{children}</body>
+        <Wrapper>
+          <Nav />
+          {children}
+        </Wrapper>
       </Providers>
     </html>
   );

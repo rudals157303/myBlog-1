@@ -2,7 +2,7 @@
 import Image from "next/image";
 import img_1 from "../../public/img_1.png";
 import { useEffect, useState } from "react";
-import PageComponent from "./components/PageComponent";
+import PageComponent from "./components/Nav";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -14,12 +14,11 @@ export default function Home() {
 
   return (
     <>
-      <PageComponent />
       <div
         style={{ marginTop: "40px" }}
         className={loading ? "slide-top" : "none"}
       >
-        {/* <Image src={img_1} alt="이미지" width={200} /> */}
+        <Image src={img_1} alt="이미지" width={200} />
       </div>
     </>
   );
