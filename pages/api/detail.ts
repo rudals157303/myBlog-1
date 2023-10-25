@@ -7,10 +7,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   //   const date = new Date();
 
-  const data = new ObjectId(String(req.query.id));
-
   if (req.method === "GET") {
-    console.log(req.query.id);
+    const data = new ObjectId(String(req.query.id));
+    console.log(req.query.id, "ddd2222");
     const result = await db
       .collection("post")
       .findOne({ "list.id": data }, { projection: { "list.$": 1 } });
@@ -21,7 +20,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === "POST") {
     if (req.query.type === "edit") {
-      console.log(req.query.idx);
       const filter = { email: req.body.email };
       const update = {
         $set: {
@@ -30,7 +28,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         },
       };
       const result = await db.collection("post").updateOne(filter, update);
-
       return res.status(200).json({ ...result, messeage: "저장 되었습니다" });
     }
   } else {
