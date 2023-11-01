@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 // import formidable from "formidable";
-// import path from "path";
-// import fs from "fs/promises";
+import path from "path";
+import fs from "fs/promises";
 
 export const config = {
   api: {
@@ -11,14 +11,14 @@ export const config = {
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
-    // console.log("ddddd");
+    console.log("ddddd");
 
-    // const imgStoragePath = path.join(process.cwd() + "/public" + "/images");
-    // try {
-    //   await fs.readdir(imgStoragePath);
-    // } catch {
-    //   await fs.mkdir(imgStoragePath);
-    // }
+    const imgStoragePath = path.join(process.cwd() + "/public" + "/images");
+    try {
+      await fs.readdir(imgStoragePath);
+    } catch {
+      await fs.mkdir(imgStoragePath);
+    }
 
     // const readFile = (req: NextApiRequest, saveLocally: boolean = false) => {
     //   const options: formidable.Options = {};
