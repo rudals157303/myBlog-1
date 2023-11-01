@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 // import formidable from "formidable";
-// import path from "path";
+import path from "path";
 // import fs from "fs/promises";
 
 export const config = {
@@ -10,7 +10,7 @@ export const config = {
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  // const imgStoragePath = path.join(process.cwd() + "/public" + "/images");
+  const imgStoragePath = path.join(process.cwd() + "/public" + "/images");
   // try {
   //   await fs.readdir(imgStoragePath);
   // } catch {
@@ -43,5 +43,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   // const data = await readFile(req, true);
   // console.log(data.files.image, "data");
 
-  res.status(200).json({ message: "이미지가 업로드되었습니다.4" });
+  res
+    .status(200)
+    .json({ message: "이미지가 업로드되었습니다.4", imgStoragePath });
 };
