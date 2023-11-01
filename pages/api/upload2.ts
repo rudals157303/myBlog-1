@@ -9,21 +9,14 @@ export const config = {
   },
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
-  //local에 저장할 path
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const imgStoragePath = path.join(process.cwd() + "/public" + "/images");
-
-  //fs모듈을 사용하여path에 폴더가 없을때엔 생성하도록 할 수 있다.
   try {
     await fs.readdir(imgStoragePath);
   } catch {
     await fs.mkdir(imgStoragePath);
   }
 
-  /** true일시 로컬에 저장 */
   const readFile = (req: NextApiRequest, saveLocally: boolean = false) => {
     const options: formidable.Options = {};
 
@@ -34,28 +27,21 @@ export default async function handler(
         return Date.now().toString() + "_" + path.originalFilename;
       };
     }
-
     return new Promise<{
       fields: formidable.Fields;
       files: formidable.Files;
     }>((resolve, rejects) => {
       const form = formidable(options);
-
       form.parse(req, (err, fields, files) => {
         if (err) {
           rejects(err);
         }
-
         resolve({ fields, files });
       });
     });
   };
-
   const data = await readFile(req, true);
-  // console.log(data, "data");
+  console.log(data.files.image, "data");
 
-  //files
-  console.log(data.files.image, "dataimage"); //img Blob
-
-  return res.status(201).json({ message: "OK" });
-}
+  res.status(200).json({ message: "이미지가 업로드되었습니다." });
+};
