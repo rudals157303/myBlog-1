@@ -3,11 +3,11 @@ import formidable from "formidable";
 import path from "path";
 import fs from "fs/promises";
 
-// export const config = {
-//   api: {
-//     bodyParser: false,
-//   },
-// };
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const imgStoragePath = path.join(process.cwd() + "/public" + "/images");
@@ -41,6 +41,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     };
     const data = await readFile(req, true);
 
-    res.status(200).json({ message: "이미지가 업로드되었습니다.5", data });
+    res.status(200).json({ message: "이미지가 업로드되었습니다.", data });
   }
 };
