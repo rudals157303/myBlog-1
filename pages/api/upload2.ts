@@ -42,5 +42,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const data = await readFile(req, true);
 
     res.status(200).json({ message: "이미지가 업로드되었습니다.", data });
+  } else {
+    return res.status(405).end();
   }
 };
