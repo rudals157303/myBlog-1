@@ -83,7 +83,6 @@ export default function Portfolio() {
           "Content-Type": "multipart/form-data",
         },
       });
-
       setImage(file?.name);
       setData(prev => ({ ...prev, photo: file?.name }));
       console.log("Image uploaded successfully");
