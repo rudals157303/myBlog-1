@@ -31,7 +31,7 @@ export default async function handler(
       //true일때 option객체에 path와 filename을 저장
       options.uploadDir = imgStoragePath;
       options.filename = (name, ext, path) => {
-        return Date.now().toString() + "_" + path.originalFilename;
+        return path.originalFilename || "";
       };
     }
 

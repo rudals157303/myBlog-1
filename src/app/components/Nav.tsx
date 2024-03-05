@@ -13,7 +13,7 @@ export default function Main() {
 
   return (
     <>
-      <div className={loading ? "non2e" : "backStyle"}>
+      <div className={loading ? "none" : "backStyle"}>
         <BackGround />
       </div>
       <div className="container">
