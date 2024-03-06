@@ -198,7 +198,6 @@ export default function Portfolio() {
                                   />
                                 </video>
                               ) : (
-                                // <video src={`/images/${image}`} />
                                 <img src={`/images/${image}`} alt="Uploaded" />
                               )}
                               <TrashIcon
