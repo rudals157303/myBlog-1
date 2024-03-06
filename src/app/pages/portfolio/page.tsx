@@ -12,6 +12,7 @@ export interface Idata {
   category: string;
   description: string;
   photo: string;
+  type: boolean | null;
 }
 
 export default function Portfolio() {
@@ -23,6 +24,7 @@ export default function Portfolio() {
       category: "",
       description: "",
       photo: "",
+      type: null,
     },
   ]);
   const store = useAppSelector(state => state.menuReducer.value);
@@ -53,30 +55,26 @@ export default function Portfolio() {
               <h2 className="pdb40">Web</h2>
               <div className="pd20 item_con">
                 <div className="port_con">
-                  {/* <div className="card_style">
-                    <div
-                      style={{ cursor: "pointer" }}
-                      onClick={() => {
-                        alert("준비중입니다");
-                      }}
-                    >
-                      <video width={400} autoPlay>
-                        <source src="/videos/rpg.mp4" type="video/mp4" />
-                      </video>
-                    </div>
-                  </div> */}
-
                   {list.map(_ => {
                     return (
                       <div className="card_style" key={_._id}>
                         <a href={_.link} target="_blank" rel="noreferrer">
-                          <img
-                            src={
-                              _.photo !== ""
-                                ? `/images/${_.photo}`
-                                : "/images/no.png"
-                            }
-                          />
+                          {_.type === false ? (
+                            <img
+                              src={
+                                _.photo !== ""
+                                  ? `/images/${_.photo}`
+                                  : "/images/no.png"
+                              }
+                            />
+                          ) : (
+                            <video width={400} autoPlay>
+                              <source
+                                src={`/images/${_.photo}`}
+                                type="video/mp4"
+                              />
+                            </video>
+                          )}
                         </a>
                       </div>
                     );
@@ -101,27 +99,6 @@ export default function Portfolio() {
                   </div> */}
                 </div>
               </div>
-              {/* <div className="pdb20">
-                <p className="pdb40" />
-                <p className="pdb40" />
-                <h2 className="pdb40">Mobile</h2>
-                <div className="pd20 item_con">
-                  <div className="port_con">
-                    <div className="card_style">
-                      <div
-                        style={{ cursor: "pointer" }}
-                        onClick={() => {
-                          alert("준비중입니다");
-                        }}
-                      >
-                        <video width={400} autoPlay>
-                          <source src="/videos/rpg.mp4" type="video/mp4" />
-                        </video>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         )}

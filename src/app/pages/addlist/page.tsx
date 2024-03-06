@@ -10,6 +10,7 @@ export interface Idata {
   category: string;
   description: string;
   photo: string;
+  type?: boolean;
 }
 
 export default function Portfolio() {
@@ -19,13 +20,13 @@ export default function Portfolio() {
     category: "web",
     description: "",
     photo: "",
+    type: false,
   });
   const [image, setImage] = useState("");
 
   // 타이틀 체인지
   const handleChageTitle = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, props: string) => {
-      // console.log(e.target.value);
       setData(prev => ({ ...prev, [props]: e.target.value }));
     },
     [data.title],
@@ -33,32 +34,14 @@ export default function Portfolio() {
   // 카테고리 체인지
   const handleChageCategory = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>, props: string) => {
-      // console.log(e.target.value);
-      setData(prev => ({ ...prev, [props]: e.target.value }));
-    },
-    [data.title],
-  );
-  // 디스크립션 체인지
-  const handleChageDescription = useCallback(
-    (e: React.ChangeEvent<HTMLTextAreaElement>, props: string) => {
-      // console.log(e.target.value);
       setData(prev => ({ ...prev, [props]: e.target.value }));
     },
     [data],
   );
-
-  // 포스트 데이타
-  const postData = useCallback(
-    async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      e.preventDefault();
-      const res = await axios.post("/api/test", data);
-      try {
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      }
-
-      console.log(data, "data");
+  // 디스크립션 체인지
+  const handleChageDescription = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>, props: string) => {
+      setData(prev => ({ ...prev, [props]: e.target.value }));
     },
     [data],
   );
@@ -68,6 +51,8 @@ export default function Portfolio() {
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const selectedFile = event.target.files[0];
+      setData(prev => ({ ...prev, type: selectedFile.type.includes("video") }));
+
       setFile(selectedFile);
     }
   };
@@ -90,6 +75,22 @@ export default function Portfolio() {
       console.error("Error uploading image: ", error);
     }
   };
+
+  // 포스트 데이타
+  const postData = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      e.preventDefault();
+      const res = await axios.post("/api/test", data);
+      try {
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+
+      console.log(data, "data");
+    },
+    [data],
+  );
 
   return (
     <>
@@ -189,6 +190,17 @@ export default function Portfolio() {
                         <form onSubmit={handleSubmit}>
                           {image !== "" ? (
                             <div style={{ position: "relative" }}>
+                              {data.type ? (
+                                <video width={400} autoPlay>
+                                  <source
+                                    src={`/images/${image}`}
+                                    type="video/mp4"
+                                  />
+                                </video>
+                              ) : (
+                                // <video src={`/images/${image}`} />
+                                <img src={`/images/${image}`} alt="Uploaded" />
+                              )}
                               <TrashIcon
                                 onClick={() => {
                                   setImage("");
@@ -202,8 +214,6 @@ export default function Portfolio() {
                                 className="mx-auto h-12 w-12 text-gray-300"
                                 aria-hidden="true"
                               />
-
-                              <img src={`/images/${image}`} alt="Uploaded" />
                             </div>
                           ) : (
                             <input type="file" onChange={handleFileChange} />
