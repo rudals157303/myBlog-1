@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useCallback, useState } from "react";
 import axios from "axios";
 import { PhotoIcon, TrashIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export interface Idata {
   link: string;
@@ -75,6 +75,7 @@ export default function Portfolio() {
       console.error("Error uploading image: ", error);
     }
   };
+  const router = useRouter();
 
   // 포스트 데이타
   const postData = useCallback(
@@ -91,7 +92,6 @@ export default function Portfolio() {
     },
     [data],
   );
-
   return (
     <>
       <div className="container" style={{ background: "#FFF" }}>
@@ -228,12 +228,14 @@ export default function Portfolio() {
           </div>
 
           <div className="mt-6 flex items-center justify-end gap-x-6">
-            <Link
-              href={`/pages/portfolio`}
+            <button
+              onClick={() => {
+                router.push("/pages/portfolio");
+              }}
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Cancel
-            </Link>
+            </button>
             <button
               onClick={e => {
                 postData(e);
